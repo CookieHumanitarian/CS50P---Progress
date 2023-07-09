@@ -1,0 +1,59 @@
+# Below will be a list of simple problems set (PSET) given to me. Above each PSET will be a brief description of what my task is
+
+#1. Write a program that accepts user input and turns it all to lowercase
+
+def main():
+    text = input().lower()
+    print(text)
+
+main()
+
+
+
+#2. Write a program that replaces the space in between each word with '...'
+
+def main():
+    text = input().replace(' ', '...')
+    print(text)
+
+main()
+
+#3. Replace ':)' and ':(' in a string with its emoji equivalent
+
+def main():
+    text = input().replace(':(', '🙁').replace(':)', '🙂')
+    print(text)
+
+main()
+
+#4. Asks for user input and caculate Einstein's formula
+
+def main():
+    mass = int(input("Mass: "))
+
+    c = 300000000 * 300000000 * mass
+
+    print("E: ", c)
+
+main()
+
+#5. Remove unnecessary characters and calculate the tip
+def main():
+    dollars = dollars_to_float(input("How much was the meal? "))
+    percent = percent_to_float(input("What percentage would you like to tip? "))
+    tip = dollars * percent
+    print(f"Leave ${tip:.2f}")
+
+
+def dollars_to_float(d):
+    d = float(d.replace('$', ''))
+    return d
+
+
+def percent_to_float(p):
+    p = float(p.replace('%', ''))
+    p = p / 100
+    return p
+
+
+main()
