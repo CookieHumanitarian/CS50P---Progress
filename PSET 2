@@ -1,0 +1,37 @@
+#Below will be a collection of PSET 2 questions alongside a brief description at the top of my tasks
+
+#1. Had to check for user input and turn any camel case into snake case
+
+def main():
+    text = input("Camel case: ")
+
+    for capital in text:
+        if capital == capital.upper():
+            print("_" + capital.lower(), end='')
+        else:
+            print(capital, end='')
+
+    print()
+
+main()
+
+#2. Show the user how much they owe whilst only accepting certain denominations of coins
+
+def main():
+    coke = 50
+
+    while coke > 0:
+        text = int(input("Insert Coin: "))
+
+        #Only accepts these denominations of coins
+        if text == 25 or text == 10 or text == 5:
+            coke -= text
+            print("Amount Due:", coke)
+        #Show balance after each
+        else:
+             print("Amount Due:", coke)
+
+    #Show change (if any and ignoring case)
+    print("Change Owed:", abs(coke))
+
+main()
