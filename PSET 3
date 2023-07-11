@@ -1,0 +1,59 @@
+# Below are the series of PSETs for Week 3, a brief description for each problem will be at the start
+
+#1. Checks a fraction and outputs where the level of the fuel gauge is. A bit of practise with try blocks and while blocks
+
+def main():
+    fraction = get_fraction("Fraction: ")
+
+    #Prints a different text depending on the fuel gauge
+    if fraction <= 1:
+        print("E")
+    elif fraction >= 99:
+        print("F")
+    else:
+        print(f"{fraction:.0f}%")
+
+
+def get_fraction(text):
+    while True:
+        try:
+            #see whether the I get a value error or x is more than y
+            x, y = input(text).split('/')
+            total = int(x) / int(y) * 100
+            if int(x) > int(y):
+                raise ValueError
+        except (ValueError, ZeroDivisionError):
+            pass
+        else:
+            return total
+
+main()
+
+#2. Check user input from a menu and print out its key until the user types Control-D
+
+def main():
+    menu = {
+    "Baja Taco": 4.00,
+    "Burrito": 7.50,
+    "Bowl": 8.50,
+    "Nachos": 11.00,
+    "Quesadilla": 8.50,
+    "Super Burrito": 8.50,
+    "Super Quesadilla": 9.50,
+    "Taco": 3.00,
+    "Tortilla Salad": 8.00
+    }
+
+    sum = 0
+    while True:
+        try:
+            text = input('Item: ').title()
+            if text in menu:
+                sum += menu[text]
+                print(f'Total: ${sum:.2f}')
+        except EOFError:
+            break
+    print()
+main()
+
+#3. 
