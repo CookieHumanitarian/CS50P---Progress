@@ -1,0 +1,152 @@
+#Below will be a collection of PSET 2 questions alongside a brief description at the top of my tasks
+
+#1. Had to check for user input and turn any camel case into snake case
+
+def main():
+    text = input("Camel case: ")
+
+    for capital in text:
+        if capital == capital.upper():
+            print("_" + capital.lower(), end='')
+        else:
+            print(capital, end='')
+
+    print()
+
+main()
+
+#2. Show the user how much they owe whilst only accepting certain denominations of coins
+
+def main():
+    coke = 50
+
+    while coke > 0:
+        text = int(input("Insert Coin: "))
+
+        #Only accepts these denominations of coins
+        if text == 25 or text == 10 or text == 5:
+            coke -= text
+            print("Amount Due:", coke)
+        #Show balance after each
+        else:
+             print("Amount Due:", coke)
+
+    #Show change (if any and ignoring case)
+    print("Change Owed:", abs(coke))
+
+main()
+
+#3. Had to iterate over a string and take out all vowels. Good practice of using lists
+
+def main():
+    text = input("Input: ")
+    Vowel = ['a', 'e', 'i', 'o', 'u', 'A' 'E', 'I', 'O', 'U']
+
+    print("Output: ")
+    for t in text:
+        if t in Vowel:
+            continue
+        else:
+            print(t, end='')
+
+    print()
+
+main()
+
+#4. Had to implement a program that aligns with the requirements according to Massachusetts's vanity plate code. Took me the longest time to make sure
+#   make sure numbers cannot be used in the middle, cannot start with a 0, and having a number in between 2 alphabets. 
+
+def main():
+    plate = input("Plate: ")
+    if is_valid(plate):
+        print("Valid")
+    else:
+        print("Invalid")
+
+
+def is_valid(s):
+    #Checks first 2 letters to see whether its an alphabet
+    for characters in s[:2]:
+        if characters.isalpha() == True:
+            continue
+        else:
+            return False
+
+    #Checks to see whether word length is between 2 to 6 letters
+    if len(s) > 6 or len(s) < 2:
+       return False
+
+
+    #To make sure there isn't an alphabte in the middle of a number
+    for length in range(len(s) - 1):
+        if s[length].isdigit() == True and s[length + 1].isalpha() == True:
+            return False
+
+    #Checks to see whether there are any numbers in the middle
+    #Checks to see whether the first number is 0
+
+    #-1 to account for zero indentation
+    middle = round(len(s) / 2) - 1
+    count = 0
+
+    if s[middle - 1].isdigit() == True:
+        return False
+
+    for characters in s:
+        if characters.isdigit() == True:
+
+            #Checks whether the last character is an alphabet
+            if s[len(s) - 1].isalpha() == True:
+                return False
+
+            #Checks whether the first number is 0
+            if count == 0 and characters == "0":
+                return False
+            else:
+                count += 1
+
+
+    #No punctuation allowed
+    for characters in s:
+        if characters.isalnum() != True:
+            return False
+
+    return True
+
+main()
+
+#5. A bit of practise with dict() where i had to match user input to a key and print out its value
+
+def main():
+    list = {
+        "Apple": 130,
+        "Avocado": 50,
+        "Banana": 110,
+        "Cantaloupe": 50,
+        "Grapefruit": 60,
+        "Grapes": 90,
+        "Honeydew Melon": 50,
+        "Kiwifruit": 90,
+        "Lemon": 15,
+        "Lime": 20,
+        "Nectarine": 60,
+        "Orange": 80,
+        "Peach": 60,
+        "Pear": 100,
+        "Pineappple": 50,
+        "Plums": 70,
+        "Strawberries": 50,
+        "Sweet Cherries": 100,
+        "Tangerine": 50,
+        "Watermelon": 80,
+        "Sweet Cherries": 100,
+    }
+
+    fruit = input("Item: ").strip().capitalize()
+    if fruit in list:
+        print("Calories:", list[fruit])
+    else:
+        return 1
+main()
+
+
