@@ -1,0 +1,101 @@
+# This will be a collection of problem sets from Week 1. A brief description will be at the start of each problem
+
+#1. Learnt to identify case using the 'match()' function
+
+def main():
+    question = input("Answer: ").strip().lower()
+
+    match question:
+        case 'forty two' | 'forty-two' | '42':
+            print('Yes')
+        case _:
+            print('No')
+
+main()
+
+#2. Learn to slice strings to check whether an user has inputted something that is 'hello', starts with the letter 'h', or is something different
+
+def main():
+    greeting = input("Greeting: ").lower().strip()
+
+    if greeting[0:5] == 'hello':
+        print("$0")
+    elif greeting[0:1] == 'h':
+        print("$20")
+    else:
+        print("$100")
+
+main()
+
+#3. Check the extension of user input to determine what file type it is
+
+def main():
+    #Gets user input
+    text = input("File: ").strip().lower()
+
+    #Checks file type
+    if text.endswith('.gif'):
+        print("image/gif")
+    elif text.endswith('.jpeg') | text.endswith('.jpg'):
+        print("image/jpeg")
+    elif text.endswith('.png'):
+        print("image/png")
+    elif text.endswith('.pdf'):
+        print("application/pdf")
+    elif text.endswith('.txt'):
+        print("text/plain")
+    elif text.endswith('.zip'):
+        print("application/zip")
+    else:
+        print("application/octet-stream")
+
+main()
+
+#4. A bit more tricky where I had to format user input and used a split() function to calculate basic arithmetic operations on what the user inputs
+
+def main():
+    #Get 3 inputs from user
+    text = input("Input 3 things: ")
+
+    #splits input based on space. We are assuming that the user complies
+    x, y, z = text.split(' ')
+
+    #checks for each case and returns a number with 1 decimal place
+    match y:
+        case '+':
+            print(float(x) + float(z))
+        case '-':
+            print(float(x) - float(z))
+        case '*':
+            print(float(x) * float(z))
+        case '/':
+            a = float(x) / float(z)
+            print(f"{a:.1f}")
+
+main()
+
+#5. Had to check whether a user input fits a specific time range and output depending on the range
+
+def main():
+    time, latin = input("Time: ").split(' ')
+    final_time = convert(time)
+
+    match latin:
+        case 'a.m.':
+             if 7.00 <= final_time <= 8.00:
+                print('breakfast time')
+        case 'p.m.':
+            if 12.00 <= final_time <= 1.00:
+                print('lunch time')
+            elif 6.00 <= final_time <= 7.00:
+                print('dinner time')
+
+
+def convert(time):
+    hours, minutes = time.split(':')
+
+    return int(hours) + (int(minutes) / 60)
+
+if __name__ == "__main__":
+    main()
+
