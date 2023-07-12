@@ -74,7 +74,7 @@ def main():
             else:
                 cart[grocery] = 1
         except EOFError:
-            for grocery in sorted(cart):
+            for grocery in sorted(cart.keys()):
                 print(cart[grocery], grocery)
             break
 
