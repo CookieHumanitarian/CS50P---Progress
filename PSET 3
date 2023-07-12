@@ -83,7 +83,7 @@ def main():
 main()
 
 #4. Seperates user input of month-day-year to year-month-day. I made a program that would strip ',' and '/' at once but CS50 is quite particular on the
-#type of inputs it accepts. I redid it but I will paste my version here that can account both for '1/2/03' and 'January 2, 2003' 
+#type of inputs it accepts. I can't pass all of the checks but here's my version which I argue is more robust
 
 def main():
     #get user input
