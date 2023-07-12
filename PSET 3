@@ -56,4 +56,31 @@ def main():
     print()
 main()
 
-#3. 
+#3. Learnt to add user input to a dictionary and sort it in alphabetical order
+
+#create an empty list dict. Key = sum and Value = grocery
+#keep trying to add user input to dict. If there's a duplicate, increase count by one
+#print the list in alphabetical order and in all caps alongside the sum of the ingredients
+
+def main():
+    cart = {}
+
+    while True:
+        try:
+            grocery = input().upper()
+
+            if grocery in cart:
+                cart[grocery] += 1
+            else:
+                cart[grocery] = 1
+        except EOFError:
+            for grocery in sorted(cart):
+                print(cart[grocery], grocery)
+            break
+
+    print()
+
+main()
+
+#4. 
+
