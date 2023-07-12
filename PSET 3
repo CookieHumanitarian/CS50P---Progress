@@ -82,5 +82,54 @@ def main():
 
 main()
 
-#4. 
+#4. Seperates user input of month-day-year to year-month-day. I made a program that would strip ',' and '/' at once but CS50 is quite particular on the
+#type of inputs it accepts. I redid it but I will paste my version here that can account both for '1/2/03' and 'January 2, 2003' 
+
+def main():
+    #get user input
+    #input can be number or month
+    #if month, then get index + 1 for month number
+
+    months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+    ]
+
+    while True:
+        try:
+            #Divides into month-day-year
+            x, y, z = input("Date: ").strip().replace('/', ' ').split(' ')
+            y = y.replace(',','')
+            if int(y) > 30:
+                raise ValueError
+
+            if x.isdigit() != True:
+                if x.title() not in months:
+                    raise ValueError
+            elif int(x) > 12:
+                raise ValueError
+        except ValueError:
+            pass
+        else:
+            break
+
+    #Print year-month-day
+    if x.isdigit() == True:
+        print(f"{z}-{int(x):02}-{int(y):02}")
+    else:
+        x = months.index(x) + 1
+        print(f"{z}-{int(x):02}-{int(y):02}")
+
+main()
+
 
