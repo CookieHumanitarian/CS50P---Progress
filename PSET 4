@@ -54,4 +54,25 @@ def main():
 
 main()
 
-#3. 
+#3. Learnt to join strings using the inflection module
+
+import inflect
+
+def main():
+    p = inflect.engine()
+    text = []
+    while True:
+        try:
+            word = input("Name: ")
+            text.append(word)
+        except EOFError:
+            print()
+            break
+
+    print("Adieu, adieu, to ", end='')
+    string = p.join(text)
+    print(string)
+
+
+main()
+
