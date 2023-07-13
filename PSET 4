@@ -183,4 +183,36 @@ def generate_integer(level):
 if __name__ == "__main__":
     main()
 
-#6.
+#6. Had to find out the price of bitcoin from the Coinbase API and output the price of bitcoin multipled by the number the user inputs. Quite fun
+# to finally have a bit of practise with APIs
+
+import requests
+import sys
+import json
+
+
+def main():
+    # Checks user input
+    if len(sys.argv) != 2:
+        sys.exit("Too few CLA")
+    try:
+        number = float(sys.argv[1])
+    except ValueError:
+        sys.exit("CLA must be converted to a float")
+
+    try:
+        response = requests.get("https://api.coindesk.com/v1/bpi/currentprice.json")
+
+    except requests.RequestException:
+        print("Request failed")
+
+    key = response.json()
+    price = key["bpi"]["USD"]["rate_float"]
+    total = number * float(price)
+
+    print(f"${total:,.4f}")
+
+
+main()
+
+
