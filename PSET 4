@@ -1,0 +1,57 @@
+#1. Had a bit of practice importing a module and reading its documentation. Here I just had to implement a module that will convert text to emojis
+
+import emoji
+
+
+def main():
+    text = input("Emoji: ")
+    emo = emoji.emojize(text)
+    print("Output:", emo)
+
+
+main()
+
+#2. Used a random font generator and output fonts depending on the number of CLA
+
+from pyfiglet import Figlet
+import sys
+import random
+
+
+def main():
+    figlet = Figlet()
+    fonts = figlet.getFonts()
+
+    # Makes sure CLA is either 0 or 2
+    while True:
+        if len(sys.argv) != 3 and len(sys.argv) != 1:
+            sys.exit("Input correct number of CLA")
+
+        # Checks whether CLA is valid
+        if len(sys.argv) == 3:
+            if sys.argv[2] not in fonts:
+                sys.exit("NO FONT EXISTS")
+
+            if sys.argv[1] == "-f" or sys.argv[1] == "--font":
+                break
+            else:
+                sys.exit("FONT")
+
+        if len(sys.argv) == 1:
+            break
+
+    text = input("Input: ")
+
+    if len(sys.argv) == 3:
+        figlet.setFont(font=sys.argv[2])
+        print(figlet.renderText(text))
+
+    elif len(sys.argv) == 1:
+        f = random.choice(fonts)
+        figlet.setFont(font=f)
+        print(figlet.renderText(text))
+
+
+main()
+
+#3. 
