@@ -105,4 +105,82 @@ def main():
 
 main()
 
-#5. 
+#5. Had to create a small game where user will input a difficulty and a series of 10 arithmetic questions will randomly appear depending on the level.
+
+import random
+
+def main():
+    level = get_level()
+    score = 0
+
+    # Prints 10 auestions
+    for _ in range(10):
+        incorrect = 0
+        x, y = generate_integer(level)
+        solution = x + y
+
+        try:
+            answer = int(input(f"{x} + {y} = "))
+            if answer == solution:
+                score += 1
+            else:
+                incorrect += 1
+                print("EEE")
+
+        except (ValueError, EOFError):
+            print("EEE")
+
+        if incorrect > 0:
+            while True:
+                answer = input(f"{x} + {y} = ")
+                try:
+                    if int(answer) == solution:
+                        score += 1
+                        break
+                    else:
+                        incorrect += 1
+                        if incorrect == 3:
+                            print("Solution:", solution)
+                            break
+                except EOFError:
+                    incorrect += 1
+                    if incorrect == 3:
+                        print("Solution:", solution)
+                        break
+                    pass
+
+    print("Score:", score)
+
+
+def get_level():
+    while True:
+        try:
+            level = int(input("Level: "))
+            if level < 1 or level > 3:
+                raise ValueError
+        except (EOFError, ValueError):
+            pass
+        else:
+            break
+
+    return level
+
+
+def generate_integer(level):
+    if level == 1:
+        x = random.randint(0, 9)
+        y = random.randint(0, 9)
+    elif level == 2:
+        x = random.randint(10, 99)
+        y = random.randint(10, 99)
+    else:
+        x = random.randint(100, 999)
+        y = random.randint(100, 999)
+
+    return x, y
+
+
+if __name__ == "__main__":
+    main()
+
+#6.
