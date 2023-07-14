@@ -149,4 +149,47 @@ def main():
         return 1
 main()
 
+#3. Had to implement a unit test for checking the code for vanity plates in PSET #2. I can't pass 1 check for alphanumeric although I have plenty of
+# that in my code so I am just going to move on. A lot of superfluous code because check50 as quite stubborn
+
+from plates import is_valid
+
+def test_first_two_alphabets():
+    assert is_valid("as") == True
+    assert is_valid("a0") == False
+
+def test_length():
+    assert is_valid("asasdqw") == False
+    assert is_valid("a") == False
+    assert is_valid("asasdq") == True
+
+
+def test_middle_alphabet():
+    assert is_valid("AA3A") == False
+    assert is_valid("AAAA3") == True
+
+
+def test_number():
+    assert is_valid("AA3AA") == False
+    assert is_valid("33AA") == False
+    assert is_valid("03ASD") == False
+    assert is_valid("123") == False
+
+
+def test_alphanumeric():
+    assert is_valid("AAAA03") == False
+    assert is_valid("12") == False
+    assert is_valid("AS12") == True
+    assert is_valid("1ASDAS") == False
+    assert is_valid("123ABC") == False
+    assert is_valid("ABC123") == True
+
+
+def test_punct():
+    assert is_valid("A.,") == False
+    assert is_valid("./,3") == False
+
+#4. 
+
+
 
