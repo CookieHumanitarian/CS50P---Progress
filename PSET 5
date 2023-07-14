@@ -1,0 +1,20 @@
+#1. Learnt about unit testing today. Here is me unit testing my PSET 2 #2. code
+
+from twttr import shorten
+
+def test_vowels():
+    assert shorten("hello") == "hll"
+    assert shorten("jeez") == "jz"
+    assert shorten("aeiOa") == ""
+
+def test_consonants():
+    assert shorten("abcde") == "bcd"
+
+def test_numbers():
+    assert shorten("123") == "123"
+
+def test_punctuation():
+    assert shorten("./,") == "./,"
+
+#2. 
+
