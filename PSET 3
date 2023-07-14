@@ -132,4 +132,28 @@ def main():
 
 main()
 
+#3. Had to implement a test for PSET 3. Spent a lot of time figuring out the logic behind pytest.raises() function but I finally realised that in my
+# main code, i just had to 'raise' for that error to be picked up by Pytest
 
+from fuel import convert, gauge
+import pytest
+
+def test_ValueError():
+    with pytest.raises(ValueError):
+        convert("cat/dog")
+
+    with pytest.raises(ZeroDivisionError):
+        convert("1/0")
+
+
+def test_convert():
+    assert convert("1/2") == 50.0
+    assert convert("1/100") == 1.0
+    assert convert("100/100") == 100.0
+    assert convert("99/100") == 99.0
+
+def test_gauge():
+    assert gauge(50.0) == "50.0%"
+    assert gauge(1.0) == "E"
+    assert gauge(100.0) == "F"
+    assert gauge(99.0) == "F"
