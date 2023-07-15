@@ -73,7 +73,41 @@ def main():
 
 main()
 
-#3. 
+#3. For this task, I had to open up one file and read it into another with different headings. I struggled quite a bit with the logic of opening one file # and reading it into another. Eventually after a bit of searching did I get it. Still a bit shaky but will review it again tomorrow
+
+import sys
+import csv
+
+
+def main():
+    students = []
+
+    if len(sys.argv) < 3:
+        sys.exit("Too few command-line arguments")
+    elif len(sys.argv) > 3:
+        sys.exit("Too many command-line arguments")
+
+    # try to open file unless error
+    try:
+        with open(sys.argv[1]) as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                last, first = row["name"].split(", ")
+                students.append({"last": last, "first": first, "house": row["house"]})
+
+    except FileNotFoundError:
+        sys.exit(f"Could not read {sys.argv[1]}")
+
+    with open(sys.argv[2], "w") as output:
+        writer = csv.DictWriter(output, fieldnames=["first", "last", "house"])
+        writer.writeheader()
+        for row in students:
+            writer.writerow(row)
+
+
+main()
+
+#4. 
 
 
 
