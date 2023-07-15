@@ -39,4 +39,41 @@ def main():
 
 main()
 
-#2. 
+#2. A bit of practise with csv.DictReader(). A bit of the same as the above except that I had to take in user input to one of 2 menus and output a menu
+# with ASCII art from the tabulate package
+
+import csv
+import sys
+from tabulate import tabulate
+
+def main():
+
+    menu = []
+    if len(sys.argv) == 1:
+        sys.exit("Too few command-line arguments")
+    elif len(sys.argv) > 2:
+        sys.exit("Too many command-line arguments")
+
+    if sys.argv[1].endswith(".csv") != True:
+        sys.exit("Not a CSV file")
+
+    # try to open file unless error
+    try:
+        with open(sys.argv[1]) as file:
+            lines = csv.DictReader(file)
+
+            for line in lines:
+                menu.append(line)
+
+    except FileNotFoundError:
+        sys.exit("File does not exist")
+
+
+    print(tabulate(menu, headers="keys", tablefmt="grid"))
+
+main()
+
+#3. 
+
+
+
