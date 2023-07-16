@@ -107,7 +107,44 @@ def main():
 
 main()
 
-#4. 
+#4. Practise cropping one image over another using the PIL package. Had a bit of trouble understanding the process for copy and pasting images at first
+
+import sys
+import os
+from PIL import Image
+from PIL import ImageOps
+
+def main():
+    #these checks whether there's 2 CLA arguments and whether both arguments match each other in extensions
+    if len(sys.argv) < 3:
+        sys.exit("Too few command-line arguments")
+    elif len(sys.argv) > 3:
+        sys.exit("Too many command-line arguments")
+
+    input = os.path.splitext(sys.argv[1])
+    output = os.path.splitext(sys.argv[2])
+    suffixes = (".jpg", ".jpeg", ".png")
+
+    if sys.argv[1].endswith(suffixes) != True:
+        sys.exit("Wrong extension for input file")
+
+    elif sys.argv[2].endswith(suffixes) != True:
+        sys.exit("Wrong extension for output file")
+
+    elif input[1] != output[1]:
+        sys.exit("Need similar extensions for both input and output")
+    
+    #Cropping images
+    try:
+        with Image.open(sys.argv[1]) as file:
+            shirt = Image.open("shirt.png")
+            size = shirt.size
+            new = ImageOps.fit(file, size)
+            new.paste(shirt, shirt)
+            new.save(sys.argv[2])
+
+    except FileNotFoundError:
+        sys.exit("File not found")
 
 
-
+main()
