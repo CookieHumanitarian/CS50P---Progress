@@ -1,1 +1,31 @@
+#. Practise with regex where I had to validate an IP address. There is actually a proper full notation for the regex of IP addresses but I decided to take a 
+# more verbose option instead of copy pasting everything
 
+import re
+
+
+def main():
+    print(validate(input("IPv4 Address: ")))
+
+
+def validate(ip):
+    if match := re.search(r"(.+)\.(.+)\.(.+)\.(.+)", ip):
+        matches = match.groups()
+        for numbers in matches:
+            try:
+                if int(numbers) >= 0 and int(numbers) <= 255:
+                    pass
+                else:
+                    return False
+            except ValueError:
+                return False
+    else:
+        return False
+
+    return True
+
+
+if __name__ == "__main__":
+    main()
+
+#2. 
