@@ -28,4 +28,30 @@ def validate(ip):
 if __name__ == "__main__":
     main()
 
-#2. 
+#2. So far, the toughest regex I've had to do. I had to extract the Youtube URL from an embedded link. A lot of time spent on the logic of it but it can
+# finally embed the two types of HTML from youtube
+
+import re
+
+
+def main():
+    print(parse(input("HTML: ")))
+
+
+def parse(s):
+    if link := re.search(r'(?:.*)src="(?:.*)embed/(\w+)".*$', s):
+        id = link.group(1)
+        url = "https://youtu.be/" + id
+        return url
+
+    else:
+        return f"None"
+
+
+
+if __name__ == "__main__":
+    main()
+
+#3. 
+
+
