@@ -173,7 +173,19 @@ def count(s):
 if __name__ == "__main__":
     main()
 
-#5. 
+#5. The easiest assignment so far in this course. Just had to validate an email using a library with like 2 sentences of documentation (validators)
 
+import validators
+
+def main():
+    print(validate(input("What's your email address: ")))
+
+def validate(email):
+    if validators.email(email):
+        return "Valid"
+    else:
+        return "Invalid"
+
+main()
 
 
