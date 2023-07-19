@@ -153,6 +153,27 @@ def convert(s):
 if __name__ == "__main__":
     main()
 
-#4. 
+#4. Just had to write a program counting the number of 'um' (case-insensitively) in a sentence. I had to exclude words that start or end with um
+
+import re
+
+
+def main():
+    print(count(input("Text: ")))
+
+
+def count(s):
+    number = 0
+    times = re.findall((r"\bum\b"), s, re.IGNORECASE)
+    for _ in times:
+        number += 1
+    return number
+
+
+if __name__ == "__main__":
+    main()
+
+#5. 
+
 
 
