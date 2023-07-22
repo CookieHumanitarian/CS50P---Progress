@@ -1,1 +1,45 @@
 # Had practise using classes
+
+#prompt user for date and print out how many minutes it has been since then
+#assume that the time stays the same at midnight 00:00
+#check for invalid input
+#Use inflect.py to join words in output in class
+
+from datetime import date
+import sys
+
+class Check:
+    def __init__(self, u_input):
+        try:
+            year, month, day = u_input.split("-")
+        except ValueError:
+            sys.exit("Input Proper Format")
+
+        self.year = int(year)
+        self.month = int(month)
+        self.day = int(day)
+
+    def __str__(self):
+        if self.month < 1 or self.month > 12:
+            sys.exit("Wrong month")
+        if self.day < 1 or self.day > 31:
+            sys.exit("Wrong day")
+
+        
+
+
+
+
+
+def main():
+    print(get_input())
+
+def get_input():
+    u_input = input("Date of Birth: ")
+    return Check(u_input)
+
+
+
+
+if __name__ == "__main__":
+    main()
