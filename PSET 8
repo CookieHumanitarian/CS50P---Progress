@@ -5,29 +5,36 @@
 #check for invalid input
 #Use inflect.py to join words in output in class
 
-from datetime import date
+from datetime import date, timedelta, datetime
 import sys
+import inflect
 
-class Check:
-    def __init__(self, u_input):
-        try:
-            year, month, day = u_input.split("-")
-        except ValueError:
-            sys.exit("Input Proper Format")
+p = inflect.engine()
 
-        self.year = int(year)
-        self.month = int(month)
-        self.day = int(day)
+def check(u_input):
+    try:
+        year, month, day = u_input.split("-")
+    except ValueError:
+        sys.exit("Input Proper Format")
 
-    def __str__(self):
-        if self.month < 1 or self.month > 12:
-            sys.exit("Wrong month")
-        if self.day < 1 or self.day > 31:
-            sys.exit("Wrong day")
+    if int(month) < 1 or int(month) > 12:
+        sys.exit("Wrong month")
+    if int(day) < 1 or int(day) > 31:
+        sys.exit("Wrong day")
 
-        
+    input = datetime.strptime(u_input, "%Y-%m-%d")
+    try:
+        input = datetime.strptime(u_input, "%Y-%m-%d")
+    except ValueError:
+        sys.exit("Value Error")
 
-
+    today = datetime.today()
+    lapse = input - today
+    seconds = timedelta.total_seconds(lapse)
+    unrounded = int(seconds) / 60
+    rounded = abs(round(int(unrounded)))
+    min = p.number_to_words(rounded, andword='')
+    return f"{min.capitalize()} minutes"
 
 
 
@@ -36,7 +43,7 @@ def main():
 
 def get_input():
     u_input = input("Date of Birth: ")
-    return Check(u_input)
+    return check(u_input)
 
 
 
