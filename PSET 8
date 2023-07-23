@@ -1,4 +1,6 @@
-# Had practise using classes
+# Had to convert a date a user inputs to seconds for the current date. One of the worst assignements in terms of passing the check as it contradicts what
+# is stated in the instructions. Nightmare.
+
 
 #prompt user for date and print out how many minutes it has been since then
 #assume that the time stays the same at midnight 00:00
@@ -22,14 +24,11 @@ def check(u_input):
     if int(day) < 1 or int(day) > 31:
         sys.exit("Wrong day")
 
-    input = datetime.strptime(u_input, "%Y-%m-%d")
-    try:
-        input = datetime.strptime(u_input, "%Y-%m-%d")
-    except ValueError:
-        sys.exit("Value Error")
 
-    today = datetime.today()
-    lapse = input - today
+    u_input = date(int(year), int(month), int(day))
+    today = date.today()
+
+    lapse = u_input - today
     seconds = timedelta.total_seconds(lapse)
     unrounded = int(seconds) / 60
     rounded = abs(round(int(unrounded)))
@@ -50,3 +49,6 @@ def get_input():
 
 if __name__ == "__main__":
     main()
+
+
+#2. 
