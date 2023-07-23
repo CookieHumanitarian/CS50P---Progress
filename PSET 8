@@ -51,4 +51,34 @@ if __name__ == "__main__":
     main()
 
 
-#2. 
+#2. Had to implement a class take takes in subtraction and addition
+class Jar:
+    def __init__(self, capacity=12):
+        if capacity < 0:
+            raise ValueError
+
+        self._capacity = capacity
+        self._size = 0
+
+    def __str__(self):
+        return "🍪" * self.size
+
+    def deposit(self, n):
+        self.size = self.size + n
+        if self.size > self.capacity:
+            raise ValueError
+
+    def withdraw(self, n):
+        self.size = self.size - self.size
+        if self.size < self.capacity:
+            raise ValueError
+
+    @property
+    def capacity(self):
+        return self._capacity
+
+    @property
+    def size(self):
+        return self._size
+
+
