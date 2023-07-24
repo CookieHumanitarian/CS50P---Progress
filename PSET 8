@@ -61,17 +61,18 @@ class Jar:
         self._size = 0
 
     def __str__(self):
-        return "🍪" * self.size
+        return '🍪' * self._size
 
     def deposit(self, n):
-        self.size = self.size + n
-        if self.size > self.capacity:
+        self._size = self._size + n
+        if self._size > self._capacity:
             raise ValueError
 
     def withdraw(self, n):
-        self.size = self.size - self.size
-        if self.size < self.capacity:
+        if self._size < n:
             raise ValueError
+        self._size = self._size - n
+
 
     @property
     def capacity(self):
@@ -81,4 +82,4 @@ class Jar:
     def size(self):
         return self._size
 
-
+#3. 
